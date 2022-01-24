@@ -1,6 +1,6 @@
-package edu.kis.vh.nursery.list;
+package edu.kis.vh.nursery.container;
 
-public class IntLinkedList {
+public class IntLinkedList implements IIntContainer {
 
 	private class Node {
 
@@ -33,12 +33,11 @@ public class IntLinkedList {
 		}
 	}
 
+	private Node last;
+	private int i=0;
 
-	public static final int ERR_CODE = -1;
- 	private Node last;
-	private int i;
-
-	public void push(int i) {
+	@Override
+	public void countIn(int i) {
 		if (last == null)
 			last = new Node(i);
 		else {
@@ -46,28 +45,38 @@ public class IntLinkedList {
 			last.getNext().setPrev(last);
 			last = last.getNext();
 		}
+		this.i++;
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return last == null;
 	}
 
+	@Override
 	public boolean isFull() {
 		return false;
 	}
 
-	public int top() {
+	@Override
+	public int peekaboo() {
 		if (isEmpty())
 			return ERR_CODE;
 		return last.getValue();
 	}
 
-	public int pop() {
+	@Override
+	public int countOut() {
 		if (isEmpty())
 			return ERR_CODE;
 		int ret = last.getValue();
 		last = last.getPrev();
+		this.i--;
 		return ret;
 	}
 
+	@Override
+	public int getTotal() {
+		return this.i;
+	}
 }
