@@ -34,10 +34,10 @@ public class IntLinkedList implements IIntContainer {
 	}
 
 	private Node last;
-	private int i=0;
+	private int total = 0;
 
 	@Override
-	public void countIn(int i) {
+	public void push(int i) {
 		if (last == null)
 			last = new Node(i);
 		else {
@@ -45,7 +45,7 @@ public class IntLinkedList implements IIntContainer {
 			last.getNext().setPrev(last);
 			last = last.getNext();
 		}
-		this.i++;
+		this.total++;
 	}
 
 	@Override
@@ -59,24 +59,24 @@ public class IntLinkedList implements IIntContainer {
 	}
 
 	@Override
-	public int peekaboo() {
+	public int top() {
 		if (isEmpty())
 			return ERR_CODE;
 		return last.getValue();
 	}
 
 	@Override
-	public int countOut() {
+	public int pop() {
 		if (isEmpty())
 			return ERR_CODE;
 		int ret = last.getValue();
 		last = last.getPrev();
-		this.i--;
+		this.total--;
 		return ret;
 	}
 
 	@Override
 	public int getTotal() {
-		return this.i;
+		return this.total;
 	}
 }

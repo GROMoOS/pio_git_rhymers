@@ -15,7 +15,7 @@ public class DefaultCountingOutRhymer {
         this.intContainer = intContainer;
     }
 
-    public void countIn(int in) {  intContainer.countIn(in); }
+    public void countIn(int in) {  intContainer.push(in); }
 
     public boolean callCheck() {
         return intContainer.isEmpty();
@@ -26,10 +26,10 @@ public class DefaultCountingOutRhymer {
     }
 
     public int peekaboo() {
-        return intContainer.peekaboo();
+        return intContainer.top();
     }
 
     public int countOut() {
-        return intContainer.countOut();
+        return intContainer.pop();
     }
 }
